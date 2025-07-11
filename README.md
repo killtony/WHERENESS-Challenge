@@ -74,7 +74,7 @@ Based on these experiments, **no augmentations** produced the most reliable stru
 
 The following plot shows the training loss per epoch:
 
-![Training Loss Curve](0d654c1d-398d-4ba2-b610-9e0f419918b3.png)
+![Training Loss Curve](https://github.com/killtony/WHERENESS-Challenge/blob/main/training-loss-curve.png?raw=true)
 
 The loss stabilized over ~30 epochs, confirming convergence.
 
