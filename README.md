@@ -94,13 +94,16 @@ Negative prompt: "extra windows, distortion, lowres, watermark"
 ## Results
 
 Sketch: 
-![Generated image](https://github.com/killtony/WHERENESS-Challenge/blob/main/training-loss-curve.png?raw=true)
+![Generated image](https://github.com/killtony/WHERENESS-Challenge/blob/main/images/example-sketch.png?raw=true)
+
 
 Fine-tuned generated image:
-![Generated image](https://github.com/killtony/WHERENESS-Challenge/blob/main/training-loss-curve.png?raw=true)
+![Generated image](https://github.com/killtony/WHERENESS-Challenge/blob/main/images/finetune-image.png?raw=true)
+
 
 Basemodel generated image:
-![Generated image](https://github.com/killtony/WHERENESS-Challenge/blob/main/training-loss-curve.png?raw=true)
+![Generated image](https://github.com/killtony/WHERENESS-Challenge/blob/main/images/baseline-image.png?raw=true)
+
 
 As you can see the Fine-tuned image preserves the exact window, door placement and overall structure of the building.
 Note: the baseline model with the scribble controlnet already performs quite well, preserving all features. However, the fine-tuned image adds slightly more color, depth and realism which is a personal preference. 
