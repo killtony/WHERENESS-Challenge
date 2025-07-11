@@ -1,40 +1,94 @@
 # Building Sketch to Photorealistic Image
 
-This repository contains code, documentation and weights for a pipeline that converts hand-drawn architectural sketches into photorealistic renders.
+This repository contains code, documentation, and model weights for a pipeline that converts hand-drawn architectural sketches into photorealistic renders, with strict structural fidelity.
+
+---
 
 ## Model & Methodology Details
 
-- **Approach:** Fine-tuning with LoRA adapters on Stable Diffusion XL + ControlNet.
-- **Base Models:**
-  - Stable Diffusion XL (`stabilityai/stable-diffusion-xl-base-1.0`)
-  - ControlNet (scribble variant)
-- **Methodology:**
-  - LoRA adapters were trained on a dataset of paired sketches and photorealistic references.
-  - Special care was taken to preserve exact window and door placement and to enforce material realism.
+**Approach:**  
+Extensive fine-tuning with LoRA adapters on Stable Diffusion XL (SDXL) combined with a ControlNet (scribble variant) backbone.  
+
+**Base Models:**  
+- **Stable Diffusion XL:** `stabilityai/stable-diffusion-xl-base-1.0`  
+- **ControlNet Scribble:** `xinsir/controlnet-scribble-sdxl-1.0`  
+
+**Methodology:**  
+LoRA adapters were trained on paired datasets to enforce:
+- Exact window and door placement
+- Realistic proportions
+- Accurate rendering of materials (limestone, cedar, etc.)
+
+The pipeline leverages ControlNet conditioning to closely adhere to sketch contours, while LoRA fine-tuning improves stylistic consistency and structural precision.
+
+---
 
 ## Data Strategy
 
-- **Dataset:**
-  - Collected 20 paired sketch/reference images.
-  - Preprocessing: resizing to 1024x1024, normalization to [-1,1].
-  - Augmentation: random rotations and flips
+**Dataset:**
+- 20 paired sketch/reference image pairs collected and manually verified.
+
+**Preprocessing:**
+- Normalization to [-1,1]
+
+**Augmentation:**
+- **No augmentations were used in the final training run** (see Ablation Study below).
+
+---
 
 ## Training Setup
 
-- **Environment:**
-  - Libraries: `torch`, `diffusers`, `peft`, `transformers`, `safetensors`
-  - Hardware: A100 GPU, 40GB VRAM.
-- **Hyperparameters:**
-  - Learning Rate: `1e-4`
-  - Batch Size: `4`
-  - Epochs: `20`
-  - Latent scaling: `0.18215`
-  - Scheduler: `DDPMScheduler`
-- **Training Script:** [`train.py`](train.py)
+**Environment:**
+- Libraries: `torch`, `diffusers`, `peft`, `transformers`, `safetensors`
+- Hardware: NVIDIA A100 GPU (40GB VRAM)
+
+**Best Hyperparameters:**
+- Batch Size: `1`
+- Gradient Accumulation Steps: `8`
+- Epochs: `30`
+- Learning Rate: `1e-4`
+- Gradient Clipping Norm: `1.0`
+- Latent Scaling Factor: `0.18215`
+- Scheduler: `DDPMScheduler`
+
+**Training Script:**
+
+---
+
+## Ablation Study
+
+Over **15 training runs** were conducted to evaluate the impact of augmentation strategies:
+
+| Run Type                  | Window/Structure Accuracy | Visual Consistency |
+|---------------------------|---------------------------|---------------------|
+| No Augmentations          | ✅ Highest fidelity       | ✅ Consistent       |
+| Random Rotations          | ❌ Slight distortion      | ❌ Inconsistent     |
+| Random Flips              | ❌ Lower accuracy         | ❌ Inconsistent     |
+
+Based on these experiments, **no augmentations** produced the most reliable structural adherence and visual realism.
+
+---
+
+## Training Loss
+
+The following plot shows the training loss per epoch:
+
+![Training Loss Curve](0d654c1d-398d-4ba2-b610-9e0f419918b3.png)
+
+The loss stabilized over ~30 epochs, confirming convergence.
+
+---
 
 ## Inference
 
-- **Inference Script:** [`inference.py`](inference.py)
-- **Example Usage:**
-  ```bash
-  python inference.py --sketch_path examples/example_sketch.png --output_path outputs/generated.png
+Hugging Face Space
+An interactive demo is available here:
+https://huggingface.co/spaces/YOUR_USERNAME/whereness-challenge
+
+## License
+This repository is released under the MIT License.
+
+## Acknowledgments
+StabilityAI for SDXL
+ControlNet authors for the scribble conditioning model
+Hugging Face for hosting and serving models
