@@ -51,7 +51,8 @@ The pipeline leverages ControlNet conditioning to closely adhere to sketch conto
 - Latent Scaling Factor: `0.18215`
 - Scheduler: `DDPMScheduler`
 
-**Training Script:**
+**Training Notebook:**
+https://colab.research.google.com/drive/1sVxUuKs8GLHS2Jcwxd7fBYowu18wAHa1?usp=sharing
 
 ---
 
@@ -83,7 +84,8 @@ The loss stabilized over ~30 epochs, confirming convergence.
 
 Hugging Face Space
 An interactive demo is available here:
-https://huggingface.co/spaces/YOUR_USERNAME/whereness-challenge
+https://huggingface.co/spaces/arkane/whereness-challenge
+*Note using CPU so inference takes several minutes
 
 ## License
 This repository is released under the MIT License.
