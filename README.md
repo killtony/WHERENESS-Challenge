@@ -87,6 +87,33 @@ An interactive demo is available here:
 https://huggingface.co/spaces/arkane/whereness-challenge
 *Note using CPU so inference takes several minutes
 
+Inference prompt:
+"ultra-realistic architectural rendering of a modern two-storey villa, white limestone panel façade and vertical cedar cladding, rooftop greenery, reflecting pool, overcast soft light, strictly matching the reference sketch, preserve exact window and door placement, no additional elements."
+Negative prompt: "extra windows, distortion, lowres, watermark"
+
+## Results
+
+Sketch: 
+![Generated image](https://github.com/killtony/WHERENESS-Challenge/blob/main/training-loss-curve.png?raw=true)
+
+Fine-tuned generated image:
+![Generated image](https://github.com/killtony/WHERENESS-Challenge/blob/main/training-loss-curve.png?raw=true)
+
+Basemodel generated image:
+![Generated image](https://github.com/killtony/WHERENESS-Challenge/blob/main/training-loss-curve.png?raw=true)
+
+As you can see the Fine-tuned image preserves the exact window, door placement and overall structure of the building.
+Note: the baseline model with the scribble controlnet already performs quite well, preserving all features. However, the fine-tuned image adds slightly more color, depth and realism which is a personal preference. 
+
+---
+
+## Further Study
+
+Hugging Face Space
+An interactive demo is available here:
+https://huggingface.co/spaces/arkane/whereness-challenge
+*Note using CPU so inference takes several minutes
+
 ## License
 This repository is released under the MIT License.
 
