@@ -85,7 +85,7 @@ The loss stabilized over ~30 epochs, confirming convergence.
 Hugging Face Space
 An interactive demo is available here:
 https://huggingface.co/spaces/arkane/whereness-challenge
-*Note using CPU so inference takes several minutes
+Note: The GPU automatically spins down after 1 hour of inactivity, so the first launch may take a minute or two to start up.
 
 Inference prompt:
 "ultra-realistic architectural rendering of a modern two-storey villa, white limestone panel façade and vertical cedar cladding, rooftop greenery, reflecting pool, overcast soft light, strictly matching the reference sketch, preserve exact window and door placement, no additional elements."
