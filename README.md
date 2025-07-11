@@ -26,7 +26,7 @@ The pipeline leverages ControlNet conditioning to closely adhere to sketch conto
 ## Data Strategy
 
 **Dataset:**
-- 20 paired sketch/reference image pairs collected and manually verified.
+- 20 paired sketch/reference image pairs generated and manually verified. View dataset: https://github.com/killtony/WHERENESS-Challenge/tree/main/sketchdata
 
 **Preprocessing:**
 - Normalization to [-1,1]
@@ -110,12 +110,9 @@ Note: the baseline model with the scribble controlnet already performs quite wel
 
 ---
 
-## Further Study
+## Further Investigation
 
-Hugging Face Space
-An interactive demo is available here:
-https://huggingface.co/spaces/arkane/whereness-challenge
-*Note using CPU so inference takes several minutes
+Given additional time and resources, I would expand the dataset to include 200–500 high-quality sketch–image pairs. This larger corpus would enable extended fine-tuning over several hundred epochs, further improving structural fidelity and achieving even higher levels of photorealism in the generated outputs.
 
 ## License
 This repository is released under the MIT License.
